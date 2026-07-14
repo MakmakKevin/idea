@@ -1,0 +1,257 @@
+/* =========================================
+   GLASSMORPHISM PINK BUTTON SYSTEM
+   ========================================= */
+
+.btn {
+  --btn-bg: oklch(0.76 0.19 350);
+  --btn-bg-hover: oklch(0.80 0.22 350);
+  --btn-text: oklch(0.99 0 0);
+  --btn-border: rgba(255, 255, 255, 0.08);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  height: 42px;
+  padding: 0 1.25rem;
+
+  border-radius: 14px;
+  border: 1px solid var(--btn-border);
+
+  background: linear-gradient(
+    to bottom,
+    color-mix(in oklab, white 8%, var(--btn-bg)),
+    var(--btn-bg)
+  );
+
+  color: var(--btn-text);
+
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+
+  cursor: pointer;
+  user-select: none;
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  transition:
+    background 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease,
+    opacity 180ms ease;
+    
+  box-shadow:
+    0 8px 24px rgba(255, 20, 147, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+
+/* =========================================
+   HOVER
+   ========================================= */
+
+.btn:hover {
+  background: linear-gradient(
+    to bottom,
+    color-mix(in oklab, white 12%, var(--btn-bg-hover)),
+    var(--btn-bg-hover)
+  );
+
+  transform: translateY(-1px);
+
+  border-color: rgba(255, 105, 180, 0.35);
+
+  box-shadow:
+    0 12px 36px rgba(255, 20, 147, 0.28),
+    0 0 0 1px rgba(255, 105, 180, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+
+/* =========================================
+   ACTIVE
+   ========================================= */
+
+.btn:active {
+  transform: translateY(1px) scale(0.99);
+
+  box-shadow:
+    0 4px 18px rgba(255, 20, 147, 0.20),
+    inset 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================
+   FOCUS
+   ========================================= */
+
+.btn:focus-visible {
+  outline: none;
+
+  box-shadow:
+    0 0 0 4px rgba(255, 20, 147, 0.18),
+    0 8px 32px rgba(255, 20, 147, 0.24);
+}
+
+
+/* =========================================
+   DISABLED
+   ========================================= */
+
+.btn:disabled,
+.btn.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+
+  transform: none;
+
+  box-shadow: none;
+}
+
+
+/* =========================================
+   OUTLINE BUTTON
+   ========================================= */
+
+.btn.btn-outline {
+  background: rgba(255, 255, 255, 0.02);
+
+  color: oklch(0.90 0.03 350);
+
+  border: 1px solid rgba(255, 105, 180, 0.25);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+
+/* =========================================
+   OUTLINE HOVER
+   ========================================= */
+
+.btn.btn-outline:hover {
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255, 20, 147, 0.12),
+      rgba(255, 20, 147, 0.08)
+    );
+
+  border-color: rgba(255, 105, 180, 0.45);
+
+  color: white;
+
+  box-shadow:
+    0 8px 28px rgba(255, 20, 147, 0.18),
+    0 0 24px rgba(255, 20, 147, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+
+/* =========================================
+   GHOST BUTTON
+   ========================================= */
+
+.btn.btn-ghost {
+  background: transparent;
+  border-color: transparent;
+
+  color: oklch(0.88 0.03 350);
+
+  box-shadow: none;
+}
+
+.btn.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.04);
+
+  border-color: rgba(255, 255, 255, 0.05);
+
+  box-shadow:
+    0 4px 18px rgba(255, 20, 147, 0.10);
+}
+
+
+/* =========================================
+   SOFT BUTTON
+   ========================================= */
+
+.btn.btn-soft {
+  background: rgba(255, 20, 147, 0.12);
+
+  color: oklch(0.92 0.03 350);
+
+  border-color: rgba(255, 105, 180, 0.10);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.btn.btn-soft:hover {
+  background: rgba(255, 20, 147, 0.18);
+
+  border-color: rgba(255, 105, 180, 0.22);
+
+  box-shadow:
+    0 8px 24px rgba(255, 20, 147, 0.16);
+}
+
+
+/* =========================================
+   DANGER BUTTON
+   ========================================= */
+
+.btn.btn-danger {
+  --btn-bg: oklch(0.68 0.22 20);
+  --btn-bg-hover: oklch(0.72 0.24 20);
+}
+
+
+/* =========================================
+   SUCCESS BUTTON
+   ========================================= */
+
+.btn.btn-success {
+  --btn-bg: oklch(0.72 0.18 160);
+  --btn-bg-hover: oklch(0.76 0.20 160);
+}
+
+
+/* =========================================
+   SIZES
+   ========================================= */
+
+.btn.btn-sm {
+  height: 34px;
+  padding: 0 0.9rem;
+
+  border-radius: 12px;
+
+  font-size: 0.82rem;
+}
+
+.btn.btn-lg {
+  height: 52px;
+  padding: 0 1.6rem;
+
+  border-radius: 18px;
+
+  font-size: 1rem;
+}
+
+
+/* =========================================
+   ICON BUTTON
+   ========================================= */
+
+.btn.btn-icon {
+  width: 42px;
+  padding: 0;
+}
+
+.btn.btn-icon.btn-lg {
+  width: 52px;
+}
