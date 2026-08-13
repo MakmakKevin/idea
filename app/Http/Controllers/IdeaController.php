@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreIdeaRequest;
 use App\Http\Requests\UpdateIdeaRequest;
-use App\Models\Idea;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use App\IdeaStatus;
+use App\Models\Idea;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IdeaController extends Controller
 {
@@ -19,19 +19,19 @@ class IdeaController extends Controller
         $user = Auth::user();
         $status = $request->status;
 
-        if(!in_array($status, IdeaStatus::value())){
+        if (! in_array($status, IdeaStatus::value())) {
             $status = null;
         }
-        
+
         $ideas = $user
-        ->ideas()
-        ->when($status, fn($query, $status) => $query->where('status', $status))
-        ->get();
-        
+            ->ideas()
+            ->when($status, fn ($query, $status) => $query->where('status', $status))
+            ->get();
+
         // return $finalStatusCounts;
         return view('idea.index', [
             'ideas' => $ideas,
-            'statusCounts' => Idea::getStatusCounts($user)
+            'statusCounts' => Idea::getStatusCounts($user),
         ]);
     }
 

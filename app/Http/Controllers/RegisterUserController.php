@@ -15,12 +15,13 @@ class RegisterUserController extends Controller
         return view('auth.register');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         $request->validate([
-            'name'=> ['required','string','min:3','max:255'],
-            'email' => ['required','string','email','max:255',Rule::unique('users','email')],
-            'password' => ['required','string','min:8','max:225'],
+            'name' => ['required', 'string', 'min:3', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')],
+            'password' => ['required', 'string', 'min:8', 'max:225'],
         ]);
 
         $user = User::create([
@@ -31,8 +32,8 @@ class RegisterUserController extends Controller
 
         Auth::login($user);
 
-        //Fire here register event that triggers verification email
+        // Fire here register event that triggers verification email
 
-        return redirect('/')->with('success','Your account has been created successfully');
+        return redirect('/')->with('success', 'Your account has been created successfully');
     }
 }

@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 class SessionController extends Controller
 {
-
     /**
      * Show the form for creating a new resource.
      */
@@ -22,18 +22,18 @@ class SessionController extends Controller
     public function store(StoreUserRequest $request)
     {
 
-    // dd($request->ajax());
+        // dd($request->ajax());
         $credentials = $request->validated();
 
-        if(!Auth::attempt($credentials)){
+        if (! Auth::attempt($credentials)) {
             return back()
-            ->withErrors(['password' => 'Invalid credentials'])
-            ->withInput();
+                ->withErrors(['password' => 'Invalid credentials'])
+                ->withInput();
         }
 
         $request->session()->regenerate();
 
-        return redirect()->intended('/')->with('success','Welcome back!');
+        return redirect()->intended('/')->with('success', 'Welcome back!');
     }
 
     /**
@@ -45,6 +45,6 @@ class SessionController extends Controller
 
         $request->session()->invalidate();
 
-        return redirect('/')->with('success','You have been logged out successfully');
+        return redirect('/')->with('success', 'You have been logged out successfully');
     }
 }

@@ -9,7 +9,6 @@ enum IdeaStatus: string
     case IN_PROGRESS = 'in_progress';
     case COMPLETED = 'completed';
 
-
     public function label(): string
     {
         return match ($this) {
@@ -21,6 +20,6 @@ enum IdeaStatus: string
 
     public static function value()
     {
-        return array_map(fn($status) => $status->value, self::cases());
+        return array_map(fn ($status) => $status->value, self::cases());
     }
 }

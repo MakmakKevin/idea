@@ -8,14 +8,14 @@ test('example', function () {
     expect(true)->toBeTrue();
 });
 
-test('idea belongs to user', function() {
+test('idea belongs to user', function () {
     $idea = Idea::factory()->create();
     expect($idea->user)->toBeInstanceOf(User::class);
 });
 
-test('idea can have steps', function() {
+test('idea can have steps', function () {
     $idea = Idea::factory()->create();
-    
+
     expect($idea->steps)->toBeEmpty();
 
     $idea->steps()->create([
