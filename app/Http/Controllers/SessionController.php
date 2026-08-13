@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class SessionController extends Controller
@@ -18,12 +19,11 @@ class SessionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required','string','email','max:255'],
-            'password' => ['required','string','min:8','max:225'],
-        ]);
+
+    // dd($request->ajax());
+        $credentials = $request->validated();
 
         if(!Auth::attempt($credentials)){
             return back()

@@ -9,7 +9,7 @@ it('can login an existing user', function () {
         ->fill('email',$user->email)
         ->fill('password', 'SUPERUSER')
         ->click('@login-button')
-        ->assertPathIs('/');
+        ->assertPathIs('/ideas');
 });
 
 it('cannot login with invalid credentials', function () {
@@ -19,6 +19,7 @@ it('cannot login with invalid credentials', function () {
         ->fill('email',$user->email)
         ->fill('password', 'INVALID_PASSWORD')
         ->click('@login-button')
+        ->assertSee('Invalid credentials')
         ->assertPathIs('/login');
 });
 
@@ -29,7 +30,7 @@ it('can logout an authenticated user', function () {
 
     visit('/')
         ->click('Logout')
-        ->assertPathIs('/');
+        ->assertPathIs('/login');
 
     $this->assertGuest();
 });
