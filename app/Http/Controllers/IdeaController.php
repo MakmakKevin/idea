@@ -16,29 +16,22 @@ class IdeaController extends Controller
      */
     public function index(Request $request)
     {
-        $ideas = Auth::user()
+        $user = Auth::user();
+        $status = $request->status;
+
+        if(!in_array($status, IdeaStatus::value())){
+            $status = null;
+        }
+        
+        $ideas = $user
         ->ideas()
-        ->when($request->status, fn($query, $status) => $query->where('status', $status))
+        ->when($status, fn($query, $status) => $query->where('status', $status))
         ->get();
-
-        //get status coutns SELECT status, COUNT(*) as count FROM ideas WHERE user_id = ? GROUP BY status
-        $statusCounts = Auth::user()->ideas()
-            ->selectRaw('status, COUNT(*) as count')
-            ->groupBy('status')
-            ->pluck('count', 'status');
-
-        $finalStatusCounts = collect(IdeaStatus::cases())
-        ->mapWithKeys(fn($status) => 
-        [
-            $status->value => $statusCounts->get($status->value, 0)
-        ])
-        ->put('all', Auth::user()->ideas()->count());
-            // dd($statusCounts);
         
         // return $finalStatusCounts;
         return view('idea.index', [
             'ideas' => $ideas,
-            'statusCounts' => $finalStatusCounts
+            'statusCounts' => Idea::getStatusCounts($user)
         ]);
     }
 
