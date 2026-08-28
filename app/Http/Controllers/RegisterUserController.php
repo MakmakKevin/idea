@@ -32,6 +32,9 @@ class RegisterUserController extends Controller
 
         Auth::login($user);
 
+        $test = redirect('/')->with('success', 'Your account has been created successfully');
+        dd($test);
+
         // Fire here register event that triggers verification email
 
         return redirect('/')->with('success', 'Your account has been created successfully');

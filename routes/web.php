@@ -28,4 +28,6 @@ Route::middleware('auth')->group(function () {
     // Ideas routes
     Route::get('/ideas', [IdeaController::class, 'index'])->name('ideas.index');
     Route::get('/ideas/{idea}', [IdeaController::class, 'show'])->name('ideas.show');
+    Route::patch('/ideas/{idea}', [IdeaController::class, 'update'])->name('ideas.update');
+    Route::delete('/ideas/{idea}', [IdeaController::class, 'destroy'])->name('ideas.destroy');
 });
